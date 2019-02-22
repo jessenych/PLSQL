@@ -1,0 +1,40 @@
+DECLARE
+    TYPE employees IS RECORD
+        (id int,
+        name varchar(100),
+        salary int);
+    employeeA employees;
+    employeeB employees;
+    tempid int;
+    tempname varchar(100);
+    tempsalary int;
+    
+BEGIN
+    select * into tempid, tempname, tempsalary
+    from employees
+    where salary > 70000;
+    employeeA.id := tempid;
+    employeeA.name := tempname;
+    employeeA.salary := tempsalary;
+    
+    select * into tempid, tempname, tempsalary
+    from employees
+    where salary < 70000;
+    employeeB.id := tempid;
+    employeeB.name := tempname;
+    employeeB.salary := tempsalary;
+
+
+dbms_output.put_line('EmployeeA id is ' || employeeA.id);
+dbms_output.put_line('EmployeeA name is ' || employeeA.name);
+dbms_output.put_line('EmployeeA salary is ' || employeeA.salary);
+dbms_output.put_line('EmployeeB id is ' || employeeB.id);
+dbms_output.put_line('EmployeeB name is ' || employeeB.name);
+dbms_output.put_line('EmployeeB salary is ' || employeeB.salary);
+END;
+
+
+
+
+
+
